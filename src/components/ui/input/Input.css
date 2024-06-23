@@ -1,0 +1,9 @@
+.customInput:is(:focus, :valid) {
+    background: #444;
+    padding: 16px 20px 0;
+}
+
+.customInput:is(:focus, :valid)~label {
+    font-size: 0.75rem;
+    transform: translateY(-100%);
+}
