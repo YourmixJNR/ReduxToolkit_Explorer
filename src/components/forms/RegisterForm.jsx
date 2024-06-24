@@ -1,16 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Input from "../ui/input/Input";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { selectAuth } from "../../store/auth/reducer";
 import { registerUser } from "../../store/auth/reducer";
+import { useNavigate } from "react-router-dom";
 
 const RegisterForm = () => {
   const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector(selectAuth);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setEmail("");
+    setPassword("");
+    if (isLoggedIn) {
+      navigate("/");
+    }
+  }, [isLoggedIn]);
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -26,6 +39,11 @@ const RegisterForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (password !== confirmPassword) {
+      alert("Password does not match");
+      return;
+    }
 
     const regData = {
       email,

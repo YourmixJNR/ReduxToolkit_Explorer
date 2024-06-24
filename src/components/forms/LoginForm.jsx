@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
-import store from "../../store";
 import Input from "../ui/input/Input";
 import Button from "../ui/Button";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { logInUser } from "../../store/auth/reducer";
+import { selectAuth } from "../../store/auth/reducer";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
-  const { isLoggedIn } = useSelector((store) => store.Auth);
+  const { isLoggedIn } = useSelector(selectAuth);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
