@@ -10,14 +10,15 @@ const Header = () => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector(selectAuth);
 
+  const handleLogout = () => {
+    dispatch(logoutAction());
+  };
+
   return (
     <nav className="flex justify-between items-center">
       <Logo />
       {isLoggedIn ? (
-        <div
-          onClick={() => dispatch(logoutAction())}
-          className="hover:cursor-pointer text-white"
-        >
+        <div onClick={handleLogout} className="hover:cursor-pointer text-white">
           log out
         </div>
       ) : (

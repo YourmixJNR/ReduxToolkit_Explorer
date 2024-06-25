@@ -10,9 +10,11 @@ import {
 import storage from 'redux-persist/lib/storage'
 
 import authReducer from "./auth/reducer"
+import userReducer from "./user/reducer"
 
-const rootReducer = combineReducers({
-    Auth: authReducer
+export const rootReducer = combineReducers({
+    Auth: authReducer,
+    User: userReducer
 })
 
 const rootPersistConfig = {
